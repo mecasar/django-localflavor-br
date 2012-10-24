@@ -42,3 +42,14 @@ was separated into standalone packages in Django 1.5 to keep the framework's
 core clean.
 
 For a full list of available localflavors, see https://github.com/django/
+
+Running Tests
+=============
+
+Running the tests you need to do the following:
+
+* pip install -e .
+
+* pip install `Django`
+
+* `which django-admin.py` test django_localflavor_br --settings=django_localflavor_br.tests.test_setting
