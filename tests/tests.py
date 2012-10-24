@@ -63,6 +63,7 @@ class BRLocalFlavorTests(SimpleTestCase):
 
     def test_BRPhoneNumberField(self):
         # TODO: this doesn't test for any invalid inputs.
+        error_format = [u'Phone numbers must be in XX-XXXX-XXXX format.']
         valid = {
             '41-3562-3464': '41-3562-3464',
             '4135623464': '41-3562-3464',
@@ -72,8 +73,29 @@ class BRLocalFlavorTests(SimpleTestCase):
             '41.3562.3464': '41-3562-3464',
             '41.3562-3464': '41-3562-3464',
             ' (41) 3562.3464': '41-3562-3464',
+            '11-53562-3464': '11-53562-3464',
+            '11535623464': '11-53562-3464',
+            '11 53562-3464': '11-53562-3464',
+            '11 53562 3464': '11-53562-3464',
+            '(11) 53562 3464': '11-53562-3464',
+            '11.53562.3464': '11-53562-3464',
+            '11.53562-3464': '11-53562-3464',
+            ' (11) 53562.3464': '11-53562-3464',
         }
-        invalid = {}
+        invalid = {
+            '415623464': error_format,
+            '1-5362-3464': error_format,
+            '1 5362-3464': error_format,
+            '(1) 5362 3464': error_format,
+            '1.3562.3464' : error_format,
+            '1.3562-3464': error_format,
+            '41562346456': error_format,
+            '1-5362-346456': error_format,
+            '1 5362-346456': error_format,
+            '(1) 5362 346456': error_format,
+            '1.356256.3464' : error_format,
+            '1.356256-3464': error_format,
+        }
         self.assertFieldOutput(BRPhoneNumberField, valid, invalid)
 
     def test_BRStateSelect(self):
