@@ -15,7 +15,7 @@ from django.utils.encoding import smart_text
 from django.utils.translation import ugettext_lazy as _
 
 
-phone_digits_re = re.compile(r'^(\d{2})[-\.]?(\d{4})|(\d{5})[-\.]?(\d{4})$')
+phone_digits_re = re.compile(r'^(\d{2})[-\.]?(\d{4,5})[-\.]?(\d{4})$')
 
 class BRZipCodeField(RegexField):
     default_error_messages = {
